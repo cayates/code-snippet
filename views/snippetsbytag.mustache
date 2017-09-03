@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/styles.css">  
+</head>  
+  <body>
+    <h1>View Snippets by Tag Name</h1>
+    <div class = "links">
+        <a href="http://localhost:3000/main"><button>Return to Home Page</button></a>
+    </div>
+    <div class = "allSnippets">    
+        {{#snippetsLoad}}                            
+      <div class = "allSnippetInfo">
+        <h1>This is a test for the snippets by tag name section!!!</h1>
+      </div>      
+      {{/snippetsLoad}}              
+    </div>
+  </body>
+</html>

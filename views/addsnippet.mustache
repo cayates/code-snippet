@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/styles.css">  
+  </head>  
+  <body>
+    <h1>Create New Code Snippet</h1>
+    <form class = "addSnippetForm" action="/main" method="POST">
+      <input type="text" required = "required" name="title" placeholder="Title">
+      <hr>
+      <!-- <input type="textarea" name="body" placeholder="Body">
+      <input type="textarea" rows = "10" cols = "50" name="notes" placeholder="Notes">       -->
+      <textarea name="body" required = "required" rows="10" cols="50" placeholder = "Insert Code Body">{{body}}</textarea>
+      <textarea name="notes" rows="10" cols="50" placeholder = "Notes (optional)">{{notes}}</textarea>      
+      <hr>      
+      <input type="text" required = "required" name="language" placeholder="Language">
+      <input type="text" required = "required" name="tags" placeholder="Tags">
+      <hr>
+      <input type="submit" name="" value="Create New Code Snippet">
+      <div class = "ballers">
+      <a href = "http://localhost:3000/main"><button>Return to Home Page</button></a>    
+      </div>
+    </form>
+  </body>
+</html>
+

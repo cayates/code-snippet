@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/styles.css">  
+</head>  
+  <body>
+    <h1>Edit Snippet Page</h1>
+    <div class = "links">
+        <a href="http://localhost:3000/main">Return to Home Page</a>              
+    </div>
+    <div class = "editSnippet">   
+            {{#snippetLoad}}            
+        <form class = "editSnippetForm" action="/editsnippet/{{_id}}" method="POST">
+            <input type="text" name="title" value= "{{title}}">
+            <hr>
+            <textarea name="body" rows="10" cols="50" placeholder = "Insert Code Body">{{body}}</textarea>
+            <textarea name="notes" rows="10" cols="50" placeholder = "Notes (optional)">{{notes}}</textarea>         
+            <hr>     
+            <input type="text" name="language" value="{{language}}">
+            <input type="text" name="tags" value="{{tags}}">
+            <hr>
+            <input type="submit" name="" value="Edit this Code Snippet">
+            {{/snippetLoad}}
+      </form>
+    </div>      
+    </div>
+  </body>
+</html>
