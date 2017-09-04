@@ -17,7 +17,13 @@
             <textarea name="notes" rows="10" cols="50" placeholder = "Notes (optional)">{{notes}}</textarea>         
             <hr>     
             <input type="text" name="language" value="{{language}}">
-            <input type="text" name="tags" value="{{tags}}">
+            <select placeholder = "Tags" required = "required" name="tags">
+                    <option value="{{tags}}" selected></option>          
+                    <option value="css">CSS</option>     
+                    <option value="html">HTML</option>  
+                    <option value="javascript">Javascript</option>                              
+                </select>
+            <!-- <input type="text" name="tags" value="{{tags}}"> -->
             <hr>
             <input type="submit" name="" value="Edit this Code Snippet">
             {{/snippetLoad}}

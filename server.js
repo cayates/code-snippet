@@ -35,10 +35,6 @@ app.get('/main', function(req, res){
   })
 })
 
-// app.post('/main', function(req, res){
-//   res.redirect('/main')
-// })
-
 app.get('/addsnippet', function(req, res){
   res.render('addsnippet')
 })
@@ -85,3 +81,15 @@ app.get('/editsnippet/:id', (req, res) => {
       snippetdal.getSnippetByTagName(req.params.tags, req.body)
       res.redirect('/snippetsbytag')
     })
+
+app.get('/html', function (req, res){
+  res.render('html')
+})
+
+app.get('/css', function (req, res){
+  res.render('css')
+})
+
+app.get('/javascript', function (req, res){
+  res.render('javascript')
+})

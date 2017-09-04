@@ -28,8 +28,16 @@ function deleteSnippet (snippetId) {
   }
 
 function editSnippet(snippetId, updatedSnippet){
-  Snippets.findOneAndUpdate({'_id': snippetId,}, updatedSnippet, {upsert: true}, function(err, doc) {
+  Snippets.findOneAndUpdate({'_id': snippetId}, updatedSnippet, {upsert: true}, function(err, doc) {
     })
   }
 
-module.exports = { getAllSnippets: getAllSnippets, addSnippet: addSnippet, getSnippetById: getSnippetById, deleteSnippet: deleteSnippet, editSnippet: editSnippet }
+  function getSnippetByTagName(tagName){
+    return Snippets.findOne({'tags': tagName}).catch(function(err){
+      console.log(err)
+    })
+  }
+
+
+
+module.exports = { getAllSnippets: getAllSnippets, addSnippet: addSnippet, getSnippetById: getSnippetById, deleteSnippet: deleteSnippet, editSnippet: editSnippet, getSnippetByTagName: getSnippetByTagName }

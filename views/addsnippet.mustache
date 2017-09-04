@@ -5,20 +5,23 @@
   </head>  
   <body>
     <h1>Create New Code Snippet</h1>
+    <a href="http://localhost:3000/main"><button>Return to Home Page</button></a>                  
     <form class = "addSnippetForm" action="/main" method="POST">
       <input type="text" required = "required" name="title" placeholder="Title">
       <hr>
-      <!-- <input type="textarea" name="body" placeholder="Body">
-      <input type="textarea" rows = "10" cols = "50" name="notes" placeholder="Notes">       -->
       <textarea name="body" required = "required" rows="10" cols="50" placeholder = "Insert Code Body">{{body}}</textarea>
       <textarea name="notes" rows="10" cols="50" placeholder = "Notes (optional)">{{notes}}</textarea>      
       <hr>      
       <input type="text" required = "required" name="language" placeholder="Language">
-      <input type="text" required = "required" name="tags" placeholder="Tags">
+      <select placeholder = "Tags" required = "required" name="tags">
+          <option value="" selected>Select a tag!</option>          
+          <option value="css">CSS</option>     
+          <option value="html">HTML</option>  
+          <option value="javascript">Javascript</option>                              
+      </select>
       <hr>
       <input type="submit" name="" value="Create New Code Snippet">
       <div class = "ballers">
-      <a href = "http://localhost:3000/main"><button>Return to Home Page</button></a>    
       </div>
     </form>
   </body>

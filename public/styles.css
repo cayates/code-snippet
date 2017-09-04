@@ -35,3 +35,10 @@ a {
 h1 {
     color: black;
 }
+.snippetTags {
+    list-style: none;
+}
+li {
+    margin: 30px;
+    font-size: 40px;
+}
