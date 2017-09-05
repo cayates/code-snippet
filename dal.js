@@ -48,25 +48,4 @@ function createUser(newUser){
   return Promise.resolve('Success');
 }
 
-// i will need something similar to this to check login authentication
-
-// app.post('/login', (req, res) => {
-//   Author.findOne({ username: req.body.username }, 'username password', function (err, user, next) {
-//     if (err) return next(err)
-//     if (!user) {
-//       return res.status(401).send({ message: 'Wrong email and/or password' })
-//     }
-//     user.comparePassword(req.body.password, user.password, function ( err, isMatch ) {
-//       console.log('is match', isMatch)
-//       if (!isMatch) {
-//         return res.status(401).send({ message: 'Wrong email and/or password' })
-//       }
-//       let token = { token: createToken(user)};
-//       req.session.jwtToken = token;
-//       res.redirect('/');
-//     })
-//   })
-// })
-
-
 module.exports = { getAllSnippets: getAllSnippets, addSnippet: addSnippet, getSnippetById: getSnippetById, deleteSnippet: deleteSnippet, editSnippet: editSnippet, getSnippetByTagName: getSnippetByTagName, createUser: createUser }

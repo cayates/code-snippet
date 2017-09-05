@@ -7,6 +7,8 @@ const snippetdal = require('./dal')
 const jwt = require('jsonwebtoken')
 const session = require('express-session')
 const { createToken, ensureAuthentication } = require('./helpers.js')
+const {User, Snippet} = require('./model')
+require('dotenv').config()
 
 
 app.engine('mustache', mustacheExpress())
@@ -36,6 +38,25 @@ app.get('/', function (req, res){
 
 app.get('/login', function(req, res){
   res.render('login')
+})
+
+app.post('/login', (req, res) => {
+  User.findOne({ username: req.body.username }, 'username password', function (err, user, next) {
+    if (err) return next(err)
+    if (!user) {
+      return res.status(401).send({ message: 'Wrong info, try again bro.' })
+    }
+    user.comparePassword(req.body.password, user.password, function ( err, isMatch ) {
+      console.log('is match', isMatch)
+      if (!isMatch) {
+        return res.status(401).send({ message: 'Wrong info, try again bro.' })
+      }
+      let token = { token: createToken(user)};
+      req.session.jwtToken = token;
+      console.log(token)      
+      res.redirect('/main');
+    })
+  })
 })
 
 app.get('/main', function(req, res){
@@ -125,9 +146,3 @@ app.post('/createdaccount', (req, res) => {
 })
 
 // end
-
-// app.post('/signup', (req, res) => {
-//   createAuthor(req.body).then((newAuthor) => {
-//     res.redirect('/login')
-//   })
-// })
