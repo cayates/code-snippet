@@ -33,7 +33,7 @@ function editSnippet(snippetId, updatedSnippet){
   }
 
 function getSnippetByTagName(tagName){
-  return Snippets.findOne({'tags': tagName}).catch(function(err){
+  return Snippets.find({'language': tagName}).catch(function(err){
   console.log(err)
   })
 }

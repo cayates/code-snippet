@@ -104,7 +104,7 @@ app.post('/editsnippet/:id', (req, res) =>{
 
 app.get('/snippetsbytag', (req, res) => {
   const snippetByTag = snippetdal.getSnippetByTagName(req.params.tags).then(function(snippetLoad){
-     res.render('./snippetsbytag', { snippetLoad })    
+     res.render('snippetsbytag', { snippetLoad })    
   })
 })
   
@@ -114,7 +114,9 @@ app.post('/snippetsbytag', (req, res) =>{
 })
 
 app.get('/html', function (req, res){
-  res.render('html')
+  snippetdal.getSnippetByTagName('HTML').then((snippetsLoad)=>{
+    res.render('html',{ snippetsLoad })    
+  }) 
 })
 
 app.get('/css', function (req, res){
