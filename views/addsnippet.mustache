@@ -12,13 +12,18 @@
       <hr>
       <textarea name="body" required = "required" rows="10" cols="50" placeholder = "Insert Code Body">{{body}}</textarea>
       <textarea name="notes" rows="10" cols="50" placeholder = "Notes (optional)">{{notes}}</textarea>      
-      <hr>      
-      <input type="text" required = "required" name="language" placeholder="Language">
-      <select placeholder = "Tags" required = "required" name="tags">
-          <option value="" selected>Select a tag!</option>          
+      <hr>     
+      <select placeholder = "Language" required = "required" name="language">
+          <option value="" selected>Select a Language!</option>          
           <option value="css">CSS</option>     
           <option value="html">HTML</option>  
           <option value="javascript">Javascript</option>                              
+      </select> 
+      <select placeholder = "Tags" required = "required" name="tags">
+          <option value="" selected>Select a tag!</option>          
+          <option value="styling">Styling</option>     
+          <option value="markup">Markup</option>  
+          <option value="functionality">Functionality</option>                             
       </select>
       <hr>
       <input type="submit" name="" value="Create New Code Snippet">

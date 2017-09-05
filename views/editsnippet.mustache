@@ -16,13 +16,19 @@
             <hr>
             <textarea name="body" rows="10" cols="50" placeholder = "Insert Code Body">{{body}}</textarea>
             <textarea name="notes" rows="10" cols="50" placeholder = "Notes (optional)">{{notes}}</textarea>         
-            <hr>     
-            <input type="text" name="language" value="{{language}}">
-            <select placeholder = "Tags" required = "required" name="tags">
-                    <option value="{{tags}}" selected></option>          
+            <hr>    
+            <select placeholder = "Language" required = "required" name="language">
+                    <option value="{{language}}" selected></option>          
                     <option value="CSS">CSS</option>     
                     <option value="HTML">HTML</option>  
                     <option value="Javascript">Javascript</option>                              
+                </select>  
+            <!-- <input type="text" name="language" value="{{language}}"> -->
+            <select placeholder = "Tags" required = "required" name="tags">
+                    <option value="{{tags}}" selected></option>          
+                    <option value="Styling">Styling</option>     
+                    <option value="Markup">Markup</option>  
+                    <option value="Functionality">Functionality</option>                              
                 </select>
             <!-- <input type="text" name="tags" value="{{tags}}"> -->
             <hr>

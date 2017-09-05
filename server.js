@@ -137,12 +137,12 @@ app.get('/createdaccount', function (req, res){
   res.render('createdaccount')
 })
 
-// this post is to add a new user 
-
 app.post('/createdaccount', (req, res) => {
   snippetdal.createUser(req.body).then((newUser) => {
     res.redirect('/createdaccount')    
   })
 })
 
-// end
+app.get('/viewsnippets', function (req, res){
+  res.render('viewsnippets')
+})
