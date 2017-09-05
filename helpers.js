@@ -19,7 +19,7 @@ function ensureAuthentication(req, res, next){
     const payload = jwt.verify(token, process.env.TOKEN_SECRET)
     const decoded = jwt.decode(token)
     if(decoded.exp <= moment().unix()){
-      return res.status(401).send({message: 'Sorry, your token has expired.' })
+      return res.status(401).send({message: 'Sorry, token expired bro.' })
     }
     req.user = payload;
     next();

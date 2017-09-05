@@ -6,7 +6,7 @@ const app = express()
 const snippetdal = require('./dal')
 const jwt = require('jsonwebtoken')
 const session = require('express-session')
-// const { createToken, ensureAuthentication } = require('./helpers.js')
+const { createToken, ensureAuthentication } = require('./helpers.js')
 
 
 app.engine('mustache', mustacheExpress())
@@ -76,21 +76,21 @@ app.get('/editsnippet/:id', (req, res) => {
   })
   })
 
-  app.post('/editsnippet/:id', (req, res) =>{
-    snippetdal.editSnippet(req.params.id, req.body)
-    res.redirect('/main')
-  })
+app.post('/editsnippet/:id', (req, res) =>{
+  snippetdal.editSnippet(req.params.id, req.body)
+  res.redirect('/main')
+})
 
-  app.get('/snippetsbytag', (req, res) => {
-    const snippetByTag = snippetdal.getSnippetByTagName(req.params.tags).then(function(snippetLoad){
-      res.render('./snippetsbytag', { snippetLoad })    
-    })
-    })
+app.get('/snippetsbytag', (req, res) => {
+  const snippetByTag = snippetdal.getSnippetByTagName(req.params.tags).then(function(snippetLoad){
+     res.render('./snippetsbytag', { snippetLoad })    
+  })
+})
   
-    app.post('/snippetsbytag', (req, res) =>{
-      snippetdal.getSnippetByTagName(req.params.tags, req.body)
-      res.redirect('/snippetsbytag')
-    })
+app.post('/snippetsbytag', (req, res) =>{
+     snippetdal.getSnippetByTagName(req.params.tags, req.body)
+     res.redirect('/snippetsbytag')
+})
 
 app.get('/html', function (req, res){
   res.render('html')
@@ -116,6 +116,18 @@ app.get('/createdaccount', function (req, res){
   res.render('createdaccount')
 })
 
-app.post('/createdaccount', function (req, res){
-  res.redirect('/createdaccount')
+// this post is to add a new user 
+
+app.post('/createdaccount', (req, res) => {
+  snippetdal.createUser(req.body).then((newUser) => {
+    res.redirect('/createdaccount')    
+  })
 })
+
+// end
+
+// app.post('/signup', (req, res) => {
+//   createAuthor(req.body).then((newAuthor) => {
+//     res.redirect('/login')
+//   })
+// })
