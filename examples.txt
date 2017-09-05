@@ -1,0 +1,10 @@
+this is from nicks code review 
+
+make a create account link on the login page 
+
+make an array from your schema? this should be an array of a bunch of _id's 
+
+function getallsnippets() < ---- look at the populate method 
+
+what is the difference between .create and .save? 
+

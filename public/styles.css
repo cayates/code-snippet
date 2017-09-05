@@ -42,3 +42,27 @@ li {
     margin: 30px;
     font-size: 40px;
 }
+.links {
+    padding: 10px;
+}
+.login {
+    margin: 10px;
+}
+.createAccount {
+    margin: 10px;
+}
+.codeBody {
+    background-color: black
+}
+.notesBody {
+    background-color: black
+}
+.singleSnippetBody {
+    background-color: black
+}
+.singleSnippetNotes {
+    background-color: black
+}
+p {
+    color:chartreuse
+}

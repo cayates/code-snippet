@@ -4,6 +4,10 @@ const bodyParser = require('body-parser')
 const snippets = require('./snippetdata')
 const app = express()
 const snippetdal = require('./dal')
+const jwt = require('jsonwebtoken')
+const session = require('express-session')
+// const { createToken, ensureAuthentication } = require('./helpers.js')
+
 
 app.engine('mustache', mustacheExpress())
 app.set('view engine', 'mustache')
@@ -15,7 +19,13 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.set('port', 3000)
 
 app.use(express.static('public'));
-  
+
+app.use(session({
+  secret: 'chads secret',
+  resave: false,
+  saveUninitialized: true
+}))  
+
 app.listen(app.get('port'), function () {
     console.log('App is running on Andre 3000.')
   })
@@ -92,4 +102,20 @@ app.get('/css', function (req, res){
 
 app.get('/javascript', function (req, res){
   res.render('javascript')
+})
+
+app.get('/createaccount', function (req, res){
+  res.render('createaccount')
+})
+
+app.get('/logout', function (req, res){
+  res.redirect('/login')
+})
+
+app.get('/createdaccount', function (req, res){
+  res.render('createdaccount')
+})
+
+app.post('/createdaccount', function (req, res){
+  res.redirect('/createdaccount')
 })

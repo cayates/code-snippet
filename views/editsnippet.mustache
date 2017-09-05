@@ -6,7 +6,8 @@
   <body>
     <h1>Edit Snippet Page</h1>
     <div class = "links">
-        <a href="http://localhost:3000/main">Return to Home Page</a>              
+        <a href="http://localhost:3000/main"><button>Return to Home Page</button></a>
+        <a href="http://localhost:3000/logout"><button>Logout</button></a>        
     </div>
     <div class = "editSnippet">   
             {{#snippetLoad}}            
@@ -19,9 +20,9 @@
             <input type="text" name="language" value="{{language}}">
             <select placeholder = "Tags" required = "required" name="tags">
                     <option value="{{tags}}" selected></option>          
-                    <option value="css">CSS</option>     
-                    <option value="html">HTML</option>  
-                    <option value="javascript">Javascript</option>                              
+                    <option value="CSS">CSS</option>     
+                    <option value="HTML">HTML</option>  
+                    <option value="Javascript">Javascript</option>                              
                 </select>
             <!-- <input type="text" name="tags" value="{{tags}}"> -->
             <hr>

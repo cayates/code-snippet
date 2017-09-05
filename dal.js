@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Snippets = require('./model')
 mongoose.Promise = require('bluebird')
 const url = 'mongodb://localhost:27017/codesnippetdb'
+// const { User, Snippet } = require('./model.js');
 
 mongoose.connect('mongodb://localhost:27017/codesnippetdb', {
   useMongoClient: true

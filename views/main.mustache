@@ -8,14 +8,16 @@
     <div class = "links">
         <a href="http://localhost:3000/addsnippet"><button>Add New Code Snippet</button></a>
         <a href="http://localhost:3000/snippetsbytag/{{tags}}"><button>View Snippets by Tag Name</button></a>                      
-    </div>
+        <a href="http://localhost:3000/snippetsbytag/{{tags}}"><button>View Snippets by Language</button></a>                              
+        <a href="http://localhost:3000/logout"><button>Logout</button></a>                              
+      </div>
     <div class = "allSnippets">    
         {{#snippetsLoad}}                            
     <a href = "http://localhost:3000/singleSnippet/{{_id}}">
       <div class = "allSnippetInfo">
         <h1>Title: {{title}}</h1>
-        <p>Code body: {{body}}</p>
-        <p>Notes: {{notes}}</p>
+        <p class = "codeBody">Code body: {{body}}</p>
+        <p class = "notesBody">Notes: {{notes}}</p>
         <h2>Language: {{language}}</h2>
         <h2>Tags: {{tags}}</h2>
       </div>      
