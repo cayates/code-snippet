@@ -2,19 +2,19 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt');
 
 const snippetSchema = new mongoose.Schema({
-  title: { type: String, require: true },
-  body: { type: String, require: true },
+  title: { type: String, required: true },
+  body: { type: String, required: true },
   notes: { type: String },
-  language: { type: String, require: true },
-  tags: { type: String, require: true }
+  language: { type: String, required: true },
+  tags: { type: String, required: true }
 })
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, require: true },
-  location: { type: String, require: true },
-  avatar: { type: String, require: true },
-  username: { type: String, require: true },
-  password: { type: String, require: true }
+  name: { type: String, required: true },
+  location: { type: String, required: true },
+  avatar: { type: String, required: true },
+  username: { type: String, required: true },
+  password: { type: String, required: true }
 })
 
 userSchema.pre('save', function(next) {

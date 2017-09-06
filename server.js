@@ -102,8 +102,10 @@ app.post('/editsnippet/:id', (req, res) =>{
   res.redirect('/main')
 })
 
+// SNIPPETS BY TAG NAME
+
 app.get('/snippetsbytag', (req, res) => {
-  const snippetByTag = snippetdal.getSnippetByTagName(req.params.tags).then(function(snippetLoad){
+  snippetdal.getSnippetByTagName(req.params.tags).then(function(snippetLoad){
      res.render('snippetsbytag', { snippetLoad })    
   })
 })
@@ -113,27 +115,13 @@ app.post('/snippetsbytag', (req, res) =>{
      res.redirect('/snippetsbytag')
 })
 
-app.get('/html', function (req, res){
-  snippetdal.getSnippetByTagName('HTML').then((snippetsLoad)=>{
-    res.render('html',{ snippetsLoad })    
-  }) 
-})
-
-app.get('/css', function (req, res){
-  res.render('css')
-})
-
-app.get('/javascript', function (req, res){
-  res.render('javascript')
-})
-
-app.get('/createaccount', function (req, res){
-  res.render('createaccount')
-})
+// END SNIPPETS BY TAG NAME
 
 app.get('/logout', function (req, res){
   res.redirect('/login')
 })
+
+// CREATING AN ACCOUNT
 
 app.get('/createdaccount', function (req, res){
   res.render('createdaccount')
@@ -145,6 +133,35 @@ app.post('/createdaccount', (req, res) => {
   })
 })
 
+// END
+
 app.get('/viewsnippets', function (req, res){
   res.render('viewsnippets')
+})
+
+// SNIPPETS BY LANGUAGE
+
+app.get('/snippetsbylanguage', function (req, res){
+    res.render('snippetsbylanguage')    
+  })
+
+
+// SNIPPETS BY SPECIFIC LANGUAGE
+
+app.get('/html', function (req, res){
+  snippetdal.getSnippetByLanguage('HTML').then((snippetsLoad)=>{
+    res.render('html',{ snippetsLoad })    
+  }) 
+})
+
+app.get('/css', function (req, res){
+  snippetdal.getSnippetByLanguage('CSS').then((snippetsLoad)=>{
+    res.render('css',{ snippetsLoad })    
+  }) 
+})
+
+app.get('/javascript', function (req, res){
+  snippetdal.getSnippetByLanguage('Javascript').then((snippetsLoad)=>{
+    res.render('javascript',{ snippetsLoad })    
+  }) 
 })

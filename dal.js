@@ -33,10 +33,24 @@ function editSnippet(snippetId, updatedSnippet){
   }
 
 function getSnippetByTagName(tagName){
-  return Snippets.find({'language': tagName}).catch(function(err){
+  return Snippets.find({'tags': tagName}).catch(function(err){
   console.log(err)
   })
 }
+
+function getSnippetByLanguage(language){
+  return Snippets.find({'language': language}).catch(function(err){
+  console.log(err)
+  })
+}
+
+// this is my problem child, when i take this off the snippets by language does not work
+
+// function getSnippetByTagName(tagName){
+//   return Snippets.find({'language': tagName}).catch(function(err){
+//   console.log(err)
+//   })
+// }
 
 function createUser(newUser){
   const member = new User(newUser);
@@ -48,4 +62,4 @@ function createUser(newUser){
   return Promise.resolve('Success');
 }
 
-module.exports = { getAllSnippets: getAllSnippets, addSnippet: addSnippet, getSnippetById: getSnippetById, deleteSnippet: deleteSnippet, editSnippet: editSnippet, getSnippetByTagName: getSnippetByTagName, createUser: createUser }
+module.exports = { getAllSnippets: getAllSnippets, addSnippet: addSnippet, getSnippetById: getSnippetById, deleteSnippet: deleteSnippet, editSnippet: editSnippet, createUser: createUser, getSnippetByLanguage: getSnippetByLanguage, getSnippetByTagName: getSnippetByTagName }

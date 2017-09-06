@@ -65,5 +65,7 @@ li {
     background-color: black
 }
 p {
-    color:chartreuse
+    color:chartreuse;
+    background-color: black;
+    padding: 10px;
 }
