@@ -1,3 +1,5 @@
+// ALL BASIC SETUP
+
 const express = require('express')
 const mustacheExpress = require('mustache-express')
 const bodyParser = require('body-parser')
@@ -9,7 +11,6 @@ const session = require('express-session')
 const { createToken, ensureAuthentication } = require('./helpers.js')
 const {User, Snippet} = require('./model')
 require('dotenv').config()
-
 
 app.engine('mustache', mustacheExpress())
 app.set('view engine', 'mustache')
@@ -32,6 +33,10 @@ app.listen(app.get('port'), function () {
     console.log('App is running on Andre 3000.')
   })
 
+// END BASIC SETUP
+
+// REDIRECT TO LOGIN PAGE RIGHT OFF THE BAT
+
 app.get('/', function (req, res){
   res.redirect('/login')
 })
@@ -39,6 +44,10 @@ app.get('/', function (req, res){
 app.get('/login', function(req, res){
   res.render('login')
 })
+
+// END REDIRECT 
+
+// POST REQUEST FROM THE FORM SUBMISSION ON THE LOGIN PAGE TO CHECK AUTHENTICATION
 
 app.post('/login', (req, res) => {
   User.findOne({ username: req.body.username }, 'username password', function (err, user, next) {
@@ -59,12 +68,19 @@ app.post('/login', (req, res) => {
   })
 })
 
+// END POST REQUEST
+
+// NAV TO MAIN PAGE AND POPULATE ALL SNIPPETS FROM GETALLSNIPPETS FUNCTION
+// PASS IN ALL DATA THROUGH 'SNIPPETSLOAD'
+
 app.get('/main', function(req, res){
   const allSnippets = snippetdal.getAllSnippets().then(function(snippetsLoad){
     res.render('main', { snippetsLoad })
     console.log(snippetsLoad)    
   })
 })
+
+// GET ADD SNIPPET PAGE AND POST THE NEW SNIPPET TO THE MAIN PAGE ONCE COMPLETE
 
 app.get('/addsnippet', function(req, res){
   res.render('addsnippet')
@@ -75,21 +91,28 @@ app.post ('/main', function (req, res){
   res.redirect('./main')
 })
 
+// END 
+
+// GET THE SINGLE SNIPPET THAT IS CLICKED ON BY THE _ID FROM MONGOOSE
+
 app.get('/singlesnippet/:id', (req, res) => {
   snippetdal.getSnippetById(req.params.id).then(function(snippetLoad){
     res.render('./singlesnippet', {snippetLoad})
   })
 })
 
-app.get('/deletesnippet/:id', (req, res) => {
-  snippetdal.deleteSnippet(req.params.id)
-    res.render('./main')
-  })
+// END
+
+// DELETE THE SINGLE POST BY _ID FROM MONGOOSE ONCE THE FORM IS SUBMITTED
 
 app.post('/deletesnippet/:id', (req, res) =>{
   snippetdal.deleteSnippet(req.params.id)
     res.redirect('/main')    
   })
+
+// END
+
+// EDIT SNIPPET BY THE _ID FROM MONGOOSE, PASSING IN DATA THROUGH SNIPPETLOAD
 
 app.get('/editsnippet/:id', (req, res) => {
   const editSnippet = snippetdal.getSnippetById(req.params.id).then(function(snippetLoad){
@@ -102,13 +125,21 @@ app.post('/editsnippet/:id', (req, res) =>{
   res.redirect('/main')
 })
 
+// END 
+
 // END SNIPPETS BY TAG NAME
+
+// LOGOUT PAGE TO REDIRECT BACK TO LOGIN
 
 app.get('/logout', function (req, res){
   res.redirect('/login')
 })
 
 // CREATING AN ACCOUNT
+
+app.get('/createaccount', function (req, res){
+  res.render('createaccount')
+})
 
 app.get('/createdaccount', function (req, res){
   res.render('createdaccount')
