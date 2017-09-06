@@ -102,19 +102,6 @@ app.post('/editsnippet/:id', (req, res) =>{
   res.redirect('/main')
 })
 
-// SNIPPETS BY TAG NAME
-
-app.get('/snippetsbytag', (req, res) => {
-  snippetdal.getSnippetByTagName(req.params.tags).then(function(snippetLoad){
-     res.render('snippetsbytag', { snippetLoad })    
-  })
-})
-  
-app.post('/snippetsbytag', (req, res) =>{
-     snippetdal.getSnippetByTagName(req.params.tags, req.body)
-     res.redirect('/snippetsbytag')
-})
-
 // END SNIPPETS BY TAG NAME
 
 app.get('/logout', function (req, res){
@@ -135,11 +122,13 @@ app.post('/createdaccount', (req, res) => {
 
 // END
 
+// TO VIEW ALL OF YOUR SNIPPET POSTS
+
 app.get('/viewsnippets', function (req, res){
   res.render('viewsnippets')
 })
 
-// SNIPPETS BY LANGUAGE
+// SNIPPETS BY LANGUAGE MAIN PAGE
 
 app.get('/snippetsbylanguage', function (req, res){
     res.render('snippetsbylanguage')    
@@ -165,3 +154,29 @@ app.get('/javascript', function (req, res){
     res.render('javascript',{ snippetsLoad })    
   }) 
 })
+
+// END SNIPPETS BY LANGUAGE
+
+// SNIPPETS BY TAG NAME
+
+app.get('/snippetsbytag', (req, res) => {
+     res.render('snippetsbytag')    
+  })
+
+  app.get('/functionality', function (req, res){
+    snippetdal.getSnippetByTagName('Functionality').then((snippetsLoad)=>{
+      res.render('functionality',{ snippetsLoad })    
+    }) 
+  })
+  
+  app.get('/styling', function (req, res){
+    snippetdal.getSnippetByTagName('Styling').then((snippetsLoad)=>{
+      res.render('styling',{ snippetsLoad })    
+    }) 
+  })
+  
+  app.get('/markup', function (req, res){
+    snippetdal.getSnippetByTagName('Markup').then((snippetsLoad)=>{
+      res.render('markup',{ snippetsLoad })    
+    }) 
+  })
