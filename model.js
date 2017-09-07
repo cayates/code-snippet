@@ -6,7 +6,8 @@ const snippetSchema = new mongoose.Schema({
   body: { type: String, required: true },
   notes: { type: String },
   language: { type: String, required: true },
-  tags: { type: String, required: true }
+  tags: { type: String, required: true }, 
+  snippets: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 })
 
 const userSchema = new mongoose.Schema({
@@ -14,7 +15,8 @@ const userSchema = new mongoose.Schema({
   location: { type: String, required: true },
   avatar: { type: String, required: true },
   username: { type: String, required: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true }, 
+  user: [{type: mongoose.Schema.Types.ObjectId, ref: 'Snippets'}]
 })
 
 userSchema.pre('save', function(next) {

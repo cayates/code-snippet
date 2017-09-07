@@ -7,6 +7,13 @@ mongoose.connect('mongodb://localhost:27017/codesnippetdb', {
   useMongoClient: true
 })
 
+function getUserById(){
+  //return User.findOne({'_id': userId}).catch(function(err){
+    return User.findOne()
+    console.log(err)
+  //})
+}
+
 function getAllSnippets () {
     return Snippets.find()
   }
@@ -44,14 +51,6 @@ function getSnippetByLanguage(language){
   })
 }
 
-// this is my problem child, when i take this off the snippets by language does not work
-
-// function getSnippetByTagName(tagName){
-//   return Snippets.find({'language': tagName}).catch(function(err){
-//   console.log(err)
-//   })
-// }
-
 function createUser(newUser){
   const member = new User(newUser);
   member.save( function(err){
@@ -62,4 +61,4 @@ function createUser(newUser){
   return Promise.resolve('Success');
 }
 
-module.exports = { getAllSnippets: getAllSnippets, addSnippet: addSnippet, getSnippetById: getSnippetById, deleteSnippet: deleteSnippet, editSnippet: editSnippet, createUser: createUser, getSnippetByLanguage: getSnippetByLanguage, getSnippetByTagName: getSnippetByTagName }
+module.exports = { getAllSnippets: getAllSnippets, addSnippet: addSnippet, getSnippetById: getSnippetById, deleteSnippet: deleteSnippet, editSnippet: editSnippet, createUser: createUser, getSnippetByLanguage: getSnippetByLanguage, getSnippetByTagName: getSnippetByTagName, getUserById: getUserById }

@@ -35,6 +35,10 @@ a {
 }
 h1 {
     color: black;
+    font-family: chalkduster;
+}
+h2 {
+    font-family: chalkduster;
 }
 .snippetTags {
     list-style: none;
@@ -68,4 +72,5 @@ p {
     color:chartreuse;
     background-color: black;
     padding: 10px;
+    font-family: dina;
 }

@@ -1,1 +1,26 @@
-this is what my personal snippets should look like 
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/styles.css">  
+</head>  
+  <body>
+    <h1>Hello! Welcome to all your amazing snippets!</h1>
+    <div class = "links">
+        <a href="http://localhost:3000/main"><button>Return to Home</button></a>                                          
+        <a href="http://localhost:3000/logout"><button>Logout</button></a>                              
+      </div>
+    <div class = "allSnippets">    
+        {{#snippetsLoad}}                            
+    <a href = "http://localhost:3000/singleSnippet/{{_id}}">
+      <div class = "allSnippetInfo">
+        <h1>Title: {{title}}</h1>
+        <p class = "codeBody">Code body: {{body}}</p>
+        <p class = "notesBody">Notes: {{notes}}</p>
+        <h2>Language: {{language}}</h2>
+        <h2>Tags: {{tags}}</h2>
+      </div>      
+      </a>
+      {{/snippetsLoad}}              
+    </div>
+  </body>
+</html>

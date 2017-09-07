@@ -74,8 +74,10 @@ app.post('/login', (req, res) => {
 // PASS IN ALL DATA THROUGH 'SNIPPETSLOAD'
 
 app.get('/main', function(req, res){
+  const user = snippetdal.getUserById()
+  console.log(user)
   const allSnippets = snippetdal.getAllSnippets().then(function(snippetsLoad){
-    res.render('main', { snippetsLoad })
+    res.render('main', { user, snippetsLoad })
     console.log(snippetsLoad)    
   })
 })
@@ -155,9 +157,16 @@ app.post('/createdaccount', (req, res) => {
 
 // TO VIEW ALL OF YOUR SNIPPET POSTS
 
+//   THIS IS THE STUFF I REALLY NEED TO GET HAMMERED OUT
+
 app.get('/viewsnippets', function (req, res){
-  res.render('viewsnippets')
+  snippetdal.getSnippetByUser(req.params.id).then(function(snippetsLoad){
+    res.render('./viewsnippets', { snippetsLoad })
+    console.log()               
+  })
 })
+
+// END
 
 // SNIPPETS BY LANGUAGE MAIN PAGE
 
