@@ -62,7 +62,6 @@ app.post('/login', (req, res) => {
       }
       let token = { token: createToken(user)};
       req.session.jwtToken = token;
-      console.log(token)      
       res.redirect('/main');
     })
   })
@@ -78,7 +77,6 @@ app.get('/main', function(req, res){
   console.log(user)
   const allSnippets = snippetdal.getAllSnippets().then(function(snippetsLoad){
     res.render('main', { user, snippetsLoad })
-    console.log(snippetsLoad)    
   })
 })
 
@@ -159,12 +157,17 @@ app.post('/createdaccount', (req, res) => {
 
 //   THIS IS THE STUFF I REALLY NEED TO GET HAMMERED OUT
 
-app.get('/viewsnippets', function (req, res){
-  snippetdal.getSnippetByUser(req.params.id).then(function(snippetsLoad){
-    res.render('./viewsnippets', { snippetsLoad })
-    console.log()               
+app.get('/viewsnippets', (req, res) => {
+  snippetdal.getSnippetByUser(req.params.id).then(function(usersLoad, snippetsLoad){
+    res.render('./viewsnippets', { usersLoad, snippetsLoad })
   })
 })
+
+// app.get('/singlesnippet/:id', (req, res) => {
+//   snippetdal.getSnippetById(req.params.id).then(function(snippetLoad){
+//     res.render('./singlesnippet', {snippetLoad})
+//   })
+// })
 
 // END
 

@@ -5,7 +5,6 @@
 </head>  
   <body>
     <h1>Hello! Welcome to the Snippet Manager home page!</h1>
-    {{#user}}
     <div class = "links">
         <a href="http://localhost:3000/viewsnippets/{{_id}}"><button>View All Your Posted Snippets</button></a>        
         <a href="http://localhost:3000/addsnippet"><button>Add New Code Snippet</button></a>
@@ -13,7 +12,6 @@
         <a href="http://localhost:3000/snippetsbylanguage"><button>View Snippets by Language</button></a>                              
         <a href="http://localhost:3000/logout"><button>Logout</button></a>                              
       </div>
-    {{/user}}
     <div class = "allSnippets">    
         {{#snippetsLoad}}                            
     <a href = "http://localhost:3000/singleSnippet/{{_id}}">

@@ -9,7 +9,8 @@
         <a href="http://localhost:3000/main"><button>Return to Home</button></a>                                          
         <a href="http://localhost:3000/logout"><button>Logout</button></a>                              
       </div>
-    <div class = "allSnippets">    
+    <div class = "allSnippets">
+      {{#usersLoad}}    
         {{#snippetsLoad}}                            
     <a href = "http://localhost:3000/singleSnippet/{{_id}}">
       <div class = "allSnippetInfo">
@@ -20,7 +21,8 @@
         <h2>Tags: {{tags}}</h2>
       </div>      
       </a>
-      {{/snippetsLoad}}              
+      {{/snippetsLoad}} 
+    {{/usersLoad}}             
     </div>
   </body>
 </html>

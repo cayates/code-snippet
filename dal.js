@@ -7,16 +7,18 @@ mongoose.connect('mongodb://localhost:27017/codesnippetdb', {
   useMongoClient: true
 })
 
-function getUserById(){
-  //return User.findOne({'_id': userId}).catch(function(err){
-    return User.findOne()
-    console.log(err)
-  //})
+function getUserById(userId) {
+	return User.find({ '_id': userId });
 }
 
-function getAllSnippets () {
-    return Snippets.find()
-  }
+function getSnippetByUser(getUserById){
+  return User.findOne({ '_id': getUserById })
+  .populate('snippets')
+}
+
+function getAllSnippets(){
+    return Snippets.find().populate('User')
+}
 
 function addSnippet (title, body, notes, language, tags){
     Snippets.create({title: title, body: body, notes: notes, language: language, tags: tags}
@@ -24,13 +26,11 @@ function addSnippet (title, body, notes, language, tags){
 
 function getSnippetById(snippetId){
     return Snippets.findOne({'_id': snippetId}).catch(function(err){
-      console.log(err)
     })
 }
 
 function deleteSnippet (snippetId) {
     Snippets.deleteOne({'_id': snippetId}).catch(function(err){
-      console.log(err)    
     })
   }
 
@@ -41,24 +41,19 @@ function editSnippet(snippetId, updatedSnippet){
 
 function getSnippetByTagName(tagName){
   return Snippets.find({'tags': tagName}).catch(function(err){
-  console.log(err)
   })
 }
 
 function getSnippetByLanguage(language){
   return Snippets.find({'language': language}).catch(function(err){
-  console.log(err)
   })
 }
 
 function createUser(newUser){
   const member = new User(newUser);
   member.save( function(err){
-    console.log(err);
-    console.log(member)
   })
-  console.log('congratulations, new user has been created');
   return Promise.resolve('Success');
 }
 
-module.exports = { getAllSnippets: getAllSnippets, addSnippet: addSnippet, getSnippetById: getSnippetById, deleteSnippet: deleteSnippet, editSnippet: editSnippet, createUser: createUser, getSnippetByLanguage: getSnippetByLanguage, getSnippetByTagName: getSnippetByTagName, getUserById: getUserById }
+module.exports = { getAllSnippets: getAllSnippets, addSnippet: addSnippet, getSnippetById: getSnippetById, deleteSnippet: deleteSnippet, editSnippet: editSnippet, createUser: createUser, getSnippetByLanguage: getSnippetByLanguage, getSnippetByTagName: getSnippetByTagName, getUserById: getUserById, getSnippetByUser: getSnippetByUser }
